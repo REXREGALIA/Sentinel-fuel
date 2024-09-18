@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import login from "../assets/login.jpg";
+import signupimg from "../assets/signup_img.png";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/fuel_logo.png";
 import ggl from "../assets/google_img.png";
@@ -8,7 +8,7 @@ import { auth } from "../Firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { AuthContext } from "../AuthContext";
 
-const SignIn = () => {
+const Signup = () => {
   const { currentUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    navigate("/");
+    navigate("/login");
   };
 
   const handleSubmit = async (e) => {
@@ -52,7 +52,8 @@ const SignIn = () => {
 
   return (
     <div className=" h-screen">
-      <div className="bg-white relative flex p-6 justify-around w-screen">
+      <div className="bg-gray-100 relative flex p-6 justify-around">
+
         <div className="relative z-2 p-16 bg-white rounded-lg shadow-lg h-full w-full md:w-2/5 gap-4">
           <div className="flex justify-center items-center">
             <img src={logo} alt="logo" className="w-1/6 h-1/6" />
@@ -115,7 +116,7 @@ const SignIn = () => {
               />
 
               <div className="flex justify-center items-center w-full">
-                <input type="checkbox" />
+                <input type="checkbox" required/>
                 <p className="text-gray-700 text-sm">
                   &nbsp; I agree to the terms and conditions
                 </p>
@@ -136,16 +137,21 @@ const SignIn = () => {
                   &nbsp; Log in
                 </a>
               </p>
+
             </form>
+
           </div>
+
         </div>
 
         <div className=" md:block md:w-2/5 hidden md:flex md:justify-center md:items-center">
-          <img src={login} alt="photo" className="" />
+          <img src={signupimg} alt="photo" className="" />
         </div>
+
       </div>
+
     </div>
   );
 };
 
-export default SignIn;
+export default Signup;

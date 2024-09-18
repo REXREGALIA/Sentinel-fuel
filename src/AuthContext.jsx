@@ -14,6 +14,7 @@ export default function AuthProvider({ children }) {
       console.log(user); // Log the actual user, not currentUser
       setLoading(false); // Set loading to false once the user is checked
     });
+    
     return () => unSubscribe(); // Clean up the subscription
   }, []);
 

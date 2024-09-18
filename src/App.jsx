@@ -1,29 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Landing from './components/Landing'
+import Login from './components/Login'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './components/Home'
-import SignIn from './components/SignIn'
+import Signup from './components/Signup'
 import Forms from './components/Forms'
 import { Toaster, toast } from 'sonner'
+import Land from './components/Land';
 
 function App() {
 
   return (
   <>
     <Router>
-      <div>
         <Routes>
-          <Route path="/" element={<Landing />} /> 
+          <Route path="/login" element={<Login />} /> 
           <Route path="/home" element={<Home />} />
-          <Route path="/signup" element={<SignIn />} /> 
+          <Route path="/signup" element={<Signup />} /> 
+          <Route path='/' element={<Land/>}></Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
     </Router>
-
   </>
   )
 
