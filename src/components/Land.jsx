@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
   const [showLogo, setShowLogo] = useState(false)
   const [showHeading, setShowHeading] = useState(false)
+
+  const navigate=useNavigate();
+  const handleclick=()=>
+  {
+    navigate("/signup");
+  }
 
   useEffect(() => {
     const logoTimer = setTimeout(() => setShowLogo(true), 500)
@@ -35,7 +42,7 @@ function App() {
             <button className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-gold-light">
               Book a call
             </button>
-            <button className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700">
+            <button className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={handleclick}>
               SignUp
             </button>
           </div>
