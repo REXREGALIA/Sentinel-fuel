@@ -59,19 +59,18 @@ const Home = () => {
     <>
       <div className="bg-white flex min-h-screen w-screen gap-10 pb-1/2">
 
-        <div className="flex flex-col justify-start items-center font-bold text-xl w-1/6 gap-20 bg-yellow-100 min-h-screen border-2 border-blue-800 p-10">
+        <div className="flex flex-col justify-start items-center font-bold text-xl w-1/6 gap-20 bg-gray-950 text-white min-h-screen p-10">
 
           <div className="flex justify-center gap-1/6 items-center">
             <img src={logo} alt="logo"  className="w-1/4 h-11/12"/>
             <h1>&nbsp; Sentinel Fuel</h1>
           </div>
 
-          <div className="flex flex-col gap-10 text-xl items-center">
-            <Link className="hover:border-b-2 hover:border-b-red-500 hover:text-red-600 transition duration-300 ease-in-out">Add Driver</Link>
-            <Link  className="hover:border-b-2 hover:border-b-red-500 hover:text-red-600 transition duration-300 ease-in-out">Add Petrol Pump</Link>
-            <Link className="hover:border-b-2 hover:border-b-red-500 hover:text-red-600 transition duration-300 ease-in-out">Live Truck</Link>
-            <Link className="hover:border-b-2 hover:border-b-red-500 hover:text-red-600 transition duration-300 ease-in-out">Settings</Link>
-            <Link className="hover:border-b-2 hover:border-b-red-500 hover:text-red-600 transition duration-300 ease-in-out" to={"/login"}>Log Out</Link>
+          <div className="flex flex-col gap-10 text-xl items-start">
+            <Link className=" hover:text-red-600 transition duration-300 ease-in-out">Add Driver</Link>
+            <Link  className=" hover:border-b-red-500 hover:text-red-600 transition duration-300 ease-in-out">Add Petrol Pump</Link>
+            <Link className=" hover:border-b-red-500 hover:text-red-600 transition duration-300 ease-in-out">Settings</Link>
+            <Link className=" hover:border-b-red-500 hover:text-red-600 transition duration-300 ease-in-out" to={"/login"}>Log Out</Link>
           </div>
 
         </div>
@@ -87,8 +86,8 @@ const Home = () => {
           <div className="p-5 w-full bg-[#F9F9F9] h-fit rounded-2xl z-2 shadow-2xl cursor-pointer"
           onClick={handleOpen}>
             <p>Analytics</p>
-            <h1>Total Amount Due</h1>
-            <h2>Total number of trucks live</h2>
+            <p>Total Amount Due</p>
+            <p>Total number of trucks live</p>
           </div>
 
           {/* Pop-up Modal */}
@@ -105,14 +104,14 @@ const Home = () => {
             <h2 className="text-xl mb-2">Total Amount Due</h2>
             <h3 className="text-xl">Total number of trucks live</h3>
             <button 
-              className="mt-5 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700"
+              className="mt-5 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
               onClick={() => setIsOpen(false)}
             >
               Close
             </button>
           </div>
         </div>
-        )}
+        )} 
 
           <div className="bg-[#f9f9f9] z-2 w-fit hover:border-2 hover:bg-white hover:border-pink-200 shadow-md p-2 rounded-md">
             {/* <p>Add New Orders</p> */}

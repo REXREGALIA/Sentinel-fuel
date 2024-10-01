@@ -64,7 +64,7 @@ const Forms = ({ onAddCard, cardData, onSaveEdit }) => {
 
       <label htmlFor="img">Upload image</label>
       <input type="file"
-      className=' border rounded w-full py-2 px-3'
+      className=' border rounded w-1/2 py-2 px-3'
       onChange={handleImageChange}
       id="img"
       // value={image}

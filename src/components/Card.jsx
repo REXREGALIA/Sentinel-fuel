@@ -51,28 +51,30 @@ const Card = ({cardIndex, id, iamge, add, onDelete, onEdit}) => {
 
   return (
     <>
-<div className="max-w-sm rounded overflow-hidden shadow-lg bg-pink-100 p-4">
+<div className="max-w-sm rounded overflow-hidden shadow-lg bg-orange-200 p-4">
 
-<div className='flex justify-between'>
+<div className='flex justify-between items-start'>
   
-  <div className="">
-    <p className="font-bold text-xl mb-2">{id}</p>
-    <p className="text-gray-700 text-base">
+  <div className="flex-1 mr-2">
+    <p className="font-bold text-xl mb-2 overflow-hidden whitespace-nowrap text-ellipsis max-w-[150px]">{id}</p>
+    <p className="text-gray-700 text-base break-words max-w-[150px]">
       {add}
     </p>
   </div>
 
-  <div className='flex'>
+  <div className='flex space-x-1'>
 
-  {imageUrl && (<img src={imageUrl} className=" rounded-full h-24 w-24" alt="Card Image" />)}
+  {imageUrl && (<img src={imageUrl} className=" rounded-full h-24 w-24 object-cover" alt="Card Image" />)}
 
   <CiMenuKebab className='cursor-pointer' onClick={handleClick}/>
 
               {/* Dropdown menu */}
               {showMenu && (
               <div 
+
               ref={dropdownRef} // Attach ref to the dropdown
-              className="absolute mt-4 w-24 ml-8 bg-white rounded-md shadow-lg">
+              className="absolute mt-4 w-28 ml-8 bg-white rounded-md shadow-lg">
+
                 <button
                   onClick={handleEdit}
                   className="block w-full px-4 py-2 text-center text-gray-700 hover:bg-gray-200"
