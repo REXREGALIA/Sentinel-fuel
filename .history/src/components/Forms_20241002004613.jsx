@@ -25,7 +25,7 @@ const Forms = ({ onAddCard, cardData, onSaveEdit }) => {
       let imageUrl = null;
       if (image) {
         // Generate a random image name or use the uploaded file name
-        const randomImageName = `${Date.now()}_${image.name}`;
+        const randomImageName = ${Date.now()}_${image.name};
         const imageRef = ref(storage, randomImageName);
 
         // Upload the image
@@ -38,20 +38,14 @@ const Forms = ({ onAddCard, cardData, onSaveEdit }) => {
 
       // If editing, save changes to cardData
       if (cardData) {
-        onSaveEdit({ name, address, imageUrl }); // Pass updated data to parent
+        onSaveEdit({ name, address, imageUrl });
       } else {
         // Adding a new card
-        const newCard = {
+        await addDoc(collection(db, "petrolStations"), {
           name,
           address,
           imageUrl, // Save the download URL
-        };
-
-        // Add to Firestore
-        await addDoc(collection(db, "petrolStations"), newCard);
-
-        // Pass the new card to the parent
-        onAddCard(newCard);
+        });
         console.log("Petrol Station added successfully!");
       }
 

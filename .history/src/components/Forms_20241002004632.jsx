@@ -20,22 +20,22 @@ const Forms = ({ onAddCard, cardData, onSaveEdit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       let imageUrl = null;
       if (image) {
         // Generate a random image name or use the uploaded file name
         const randomImageName = `${Date.now()}_${image.name}`;
         const imageRef = ref(storage, randomImageName);
-
+  
         // Upload the image
         await uploadBytes(imageRef, image);
-
+  
         // Get the download URL
         imageUrl = await getDownloadURL(imageRef);
         console.log("Image uploaded, download URL:", imageUrl);
       }
-
+  
       // If editing, save changes to cardData
       if (cardData) {
         onSaveEdit({ name, address, imageUrl }); // Pass updated data to parent
@@ -46,26 +46,27 @@ const Forms = ({ onAddCard, cardData, onSaveEdit }) => {
           address,
           imageUrl, // Save the download URL
         };
-
+        
         // Add to Firestore
         await addDoc(collection(db, "petrolStations"), newCard);
-
+  
         // Pass the new card to the parent
         onAddCard(newCard);
         console.log("Petrol Station added successfully!");
       }
-
+  
       // Reset form fields
       setName("");
       setAddress("");
       setImage(null);
-
+  
       toast.success("Petrol Station saved successfully!");
     } catch (error) {
       console.error("Error adding petrol station: ", error);
       toast.error("Error adding petrol station");
     }
   };
+  
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
