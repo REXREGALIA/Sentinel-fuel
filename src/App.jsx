@@ -3,7 +3,6 @@ import Login from './components/Login'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './components/Home'
 import Signup from './components/Signup'
-import Forms from './components/Forms'
 import { Toaster, toast } from 'sonner'
 import Land from './components/Land';
 
@@ -26,7 +25,7 @@ function App() {
 }
 
 function NotFound() {
-  return <h1>404 - Page Not Found</h1>;
+  return <h1>404 - Page Not Found. Wrong HTTP Request</h1>;
 }
   
 
