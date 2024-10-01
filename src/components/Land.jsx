@@ -1,16 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showLogo, setShowLogo] = useState(false)
+  const [showHeading, setShowHeading] = useState(false)
+
+  useEffect(() => {
+    const logoTimer = setTimeout(() => setShowLogo(true), 500)
+    const headingTimer = setTimeout(() => setShowHeading(true), 2000)
+
+    return () => {
+      clearTimeout(logoTimer)
+      clearTimeout(headingTimer)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <header className="border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <header className="bg-gray-900 rounded-lg max-w-5xl mx-auto mt-0 shadow-lg">
+        <div className="px-8 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
-          <div className="w-8 h-8">
-            <img src="src/assets/fuel_logo.png" alt="Logo" className="w-full h-full object-contain rounded-full" />
-          </div>
+            <div className="w-8 h-8">
+              <img src="src/assets/fuel_logo.png" alt="Logo" className="w-full h-full object-contain rounded-full" />
+            </div>
             <span className="text-xl font-semibold">Sentinelfuel</span>
           </div>
           <nav className="hidden md:flex space-x-6">
@@ -33,20 +45,53 @@ function App() {
       <main className="container mx-auto px-4 py-20 text-center">
         <div className="mb-8">
           <div className="flex justify-center items-center space-x-2 mb-4">
-          <div className="w-8 h-8">
-            <img src="src/assets/user1.jpeg" alt="Description" className="w-full h-full object-cover rounded-full" />
-          </div>
-          <div className="w-8 h-8">
-            <img src="src/assets/user1.jpeg" alt="Description" className="w-full h-full object-cover rounded-full" />
-          </div>
-          <div className="w-8 h-8">
-            <img src="src/assets/user1.jpeg" alt="Description" className="w-full h-full object-cover rounded-full" />
-          </div>
+            <div className="w-8 h-8">
+              <img src="src/assets/user1.jpeg" alt="User 1" className="w-full h-full object-cover rounded-full" />
+            </div>
+            <div className="w-8 h-8">
+              <img src="src/assets/user1.jpeg" alt="User 2" className="w-full h-full object-cover rounded-full" />
+            </div>
+            <div className="w-8 h-8">
+              <img src="src/assets/user1.jpeg" alt="User 3" className="w-full h-full object-cover rounded-full" />
+            </div>
             <span className="text-sm text-gray-400">Trusted by the Dealers</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Managing your<br />fuel with IOT
-          </h1>
+          
+          <div className="relative h-96 mb-8">
+            <AnimatePresence>
+              {showLogo && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5, rotateY: 0 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 360 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5, rotateY: { duration: 1 } }}
+                  className="absolute inset-0 flex items-center justify-center"
+                  style={{ perspective: 1000 }}
+                >
+                  <img 
+                    src="src/assets/fuel_logo.png" 
+                    alt="Fuel Logo" 
+                    className="w-64 h-64 object-contain"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <AnimatePresence>
+              {showHeading && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white bg-black bg-opacity-50 p-4 rounded">
+                    Managing your<br />fuel with IOT
+                  </h1>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
             Make big changes with small differences. An innovative fuel management system
             that uses IOT to optimize consumption and reduce environmental impact.
