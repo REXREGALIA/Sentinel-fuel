@@ -1,26 +1,37 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-  const [showLogo, setShowLogo] = useState(false)
-  const [showHeading, setShowHeading] = useState(false)
+  const [showLogo, setShowLogo] = useState(false);
+  const [showHeading, setShowHeading] = useState(false);
 
-  const navigate=useNavigate();
-  const handleclick=()=>
-  {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
     navigate("/signup");
-  }
+  };
+
+  const aboutRef = useRef(null);
+  const servicesRef = useRef(null);
+  const contactRef = useRef(null);
+
+  const scrollToSection = (ref) => {
+    window.scrollTo({
+      top: ref.current.offsetTop,
+      behavior: 'smooth',
+    });
+  };
 
   useEffect(() => {
-    const logoTimer = setTimeout(() => setShowLogo(true), 500)
-    const headingTimer = setTimeout(() => setShowHeading(true), 2000)
+    const logoTimer = setTimeout(() => setShowLogo(true), 500);
+    const headingTimer = setTimeout(() => setShowHeading(true), 2000);
 
     return () => {
-      clearTimeout(logoTimer)
-      clearTimeout(headingTimer)
-    }
-  }, [])
+      clearTimeout(logoTimer);
+      clearTimeout(headingTimer);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -33,16 +44,15 @@ function App() {
             <span className="text-xl font-semibold">Sentinelfuel</span>
           </div>
           <nav className="hidden md:flex space-x-6">
-            <a href="#" className="hover:text-blue-400">Home</a>
-            <a href="#" className="hover:text-blue-400">About</a>
-            <a href="#" className="hover:text-blue-400">Services</a>
-            <a href="#" className="hover:text-blue-400">Contact</a>
+            <button onClick={() => scrollToSection(aboutRef)} className="hover:text-blue-400">About</button>
+            <button onClick={() => scrollToSection(servicesRef)} className="hover:text-blue-400">Services</button>
+            <button onClick={() => scrollToSection(contactRef)} className="hover:text-blue-400">Contact</button>
           </nav>
           <div className="flex space-x-4">
             <button className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-gold-light">
               Book a call
             </button>
-            <button className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={handleclick}>
+            <button className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={handleClick}>
               SignUp
             </button>
           </div>
@@ -63,7 +73,7 @@ function App() {
             </div>
             <span className="text-sm text-gray-400">Trusted by the Dealers</span>
           </div>
-          
+
           <div className="relative h-96 mb-8">
             <AnimatePresence>
               {showLogo && (
@@ -75,9 +85,9 @@ function App() {
                   className="absolute inset-0 flex items-center justify-center"
                   style={{ perspective: 1000 }}
                 >
-                  <img 
-                    src="src/assets/fuel_logo.png" 
-                    alt="Fuel Logo" 
+                  <img
+                    src="src/assets/fuel_logo.png"
+                    alt="Fuel Logo"
                     className="w-64 h-64 object-contain"
                   />
                 </motion.div>
@@ -125,7 +135,17 @@ function App() {
           </div>
         </div>
 
-        <section className="mt-20">
+        {/* About Section */}
+        <section ref={aboutRef} className="mt-20">
+          <h2 className="text-3xl font-bold mb-10">About Us</h2>
+          <p className="text-gray-400">
+            Sentinelfuel is dedicated to helping businesses optimize fuel consumption through cutting-edge IOT technology.
+          </p>
+        </section>
+
+
+        {/* Features Section */}
+        <section ref={servicesRef} className="mt-20">
           <h2 className="text-3xl font-bold mb-10">Our Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="bg-gray-900 p-6 rounded-lg">
@@ -135,33 +155,36 @@ function App() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2">High Quality</h3>
-              <p className="text-gray-400">
-                We ensure top-notch quality in all our products and services.
-              </p>
+              <p className="text-gray-400">We ensure top-notch quality in all our products and services.</p>
             </div>
             <div className="bg-gray-900 p-6 rounded-lg">
               <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Custom Solutions</h3>
-              <p className="text-gray-400">
-                Tailored solutions to meet your business requirements.
-              </p>
+              <h3 className="text-xl font-semibold mb-2">Accuracy</h3>
+              <p className="text-gray-400">We ensure accuracy over oil transaction during its transportation</p>
             </div>
             <div className="bg-gray-900 p-6 rounded-lg">
               <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">24/7 Support</h3>
-              <p className="text-gray-400">
-                We are here to assist you anytime, any day.
-              </p>
+              <h3 className="text-xl font-semibold mb-2">Dealer friendly</h3>
+              <p className="text-gray-400">We ensure smooth interaction with the oil tank dealer </p>
             </div>
+            {/* Other feature components */}
           </div>
+        </section>
+
+        {/* Contact Section */}
+        <section ref={contactRef} className="mt-20">
+          <h2 className="text-3xl font-bold mb-10">Contact Us</h2>
+          <p className="text-gray-400">
+            Reach out to our team for inquiries or support.
+          </p>
         </section>
       </main>
 
@@ -172,7 +195,7 @@ function App() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
