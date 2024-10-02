@@ -94,18 +94,18 @@ export default function Component() {
           width: "16rem",
         }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={`fixed top-0 left-0 bottom-0 w-64 bg-gray-800 p-6 flex flex-col z-50 lg:relative lg:translate-x-0 lg:w-64 lg:flex ${sidebarOpen ? 'block' : 'hidden'} lg:block`}
+        className="fixed top-0 left-0 bottom-0 w-64 bg-gray-800 p-6 flex flex-col z-50 lg:relative lg:translate-x-0"
       >
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center">
-            <img src={logo} alt="logo" className="w-20 h-20 mr-3" />
+            <img src={logo} alt="logo" className="w-10 h-10 mr-3" />
             <h1 className="text-xl font-bold">Sentinel Fuel</h1>
           </div>
           <button onClick={toggleSidebar} className="lg:hidden">
             <RxCross2 size={24} />
           </button>
         </div>
-        <div className="flex flex-col space-y-8 text-xl">
+        <div className="flex flex-col space-y-4">
           <NavLink icon={<FiUser />} text="Add Driver" />
           <NavLink icon={<FiTruck />} text="Add Petrol Pump" />
           <NavLink icon={<FiSettings />} text="Settings" />

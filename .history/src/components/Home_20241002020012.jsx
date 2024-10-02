@@ -24,13 +24,11 @@ export default function Component() {
   const [isOpen, setIsOpen] = useState(false);
   const [cards, setCards] = useState([]);
   const [editingCard, setEditingCard] = useState(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [sidenavOpenlaptop, setsidenavopenlaptop] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleOpen = () => setIsOpen(!isOpen);
   const handleClick = () => setShowForm(!showForm);
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-  const togglesidebarlaptop = () => setsidenavopenlaptop(!sidenavOpenlaptop);
 
   const handleAddCard = (newCardData) => {
     setCards([...cards, newCardData]);
@@ -75,7 +73,7 @@ export default function Component() {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen flex">
-      <Toaster position="bottom-right" />
+      <Toaster position="top-right" />
       <AnimatePresence>
         {sidebarOpen && (
           <motion.div
@@ -89,30 +87,32 @@ export default function Component() {
       </AnimatePresence>
       <motion.nav
         initial={false}
-        animate={{
+        animate={{ 
           x: sidebarOpen ? 0 : "-100%",
           width: "16rem",
         }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={`fixed top-0 left-0 bottom-0 w-64 bg-gray-800 p-6 flex flex-col z-50 lg:relative lg:translate-x-0 lg:w-64 lg:flex ${sidebarOpen ? 'block' : 'hidden'} lg:block`}
+        className={`fixed top-0 left-0 bottom-0 bg-gray-800 p-6 flex flex-col z-50 lg:relative lg:translate-x-0 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center">
-            <img src={logo} alt="logo" className="w-20 h-20 mr-3" />
+            <img src={logo} alt="logo" className="w-10 h-10 mr-3" />
             <h1 className="text-xl font-bold">Sentinel Fuel</h1>
           </div>
           <button onClick={toggleSidebar} className="lg:hidden">
             <RxCross2 size={24} />
           </button>
         </div>
-        <div className="flex flex-col space-y-8 text-xl">
+        <div className="flex flex-col space-y-4">
           <NavLink icon={<FiUser />} text="Add Driver" />
           <NavLink icon={<FiTruck />} text="Add Petrol Pump" />
           <NavLink icon={<FiSettings />} text="Settings" />
           <NavLink icon={<FiLogOut />} text="Log Out" to="/login" />
         </div>
       </motion.nav>
-      <div className="flex-1 flex flex-col ">
+      <div className="flex-1 flex flex-col lg:ml-64">
         <header className="bg-gray-800 p-4 flex justify-between items-center lg:hidden">
           <button onClick={toggleSidebar} aria-label="Open menu">
             <FiMenu size={24} />
@@ -177,7 +177,7 @@ export default function Component() {
                 key={card.id}
                 cardIndex={index}
                 id={card.name}
-                iamge={card.imageUrl}
+                image={card.imageUrl}
                 add={card.address}
                 onDelete={() => handleDeleteCard(index)}
                 onEdit={() => handleEditCard(index)}

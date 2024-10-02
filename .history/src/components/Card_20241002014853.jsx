@@ -1,44 +1,43 @@
-import React, { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { CiMenuKebab } from "react-icons/ci";
-import { FiEdit2, FiTrash2 } from "react-icons/fi";
+import React, { useRef, useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { CiMenuKebab } from "react-icons/ci"
+import { FiEdit2, FiTrash2 } from "react-icons/fi"
 
 const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
-  const dropdownRef = useRef(null);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [showMenu, setShowMenu] = useState(false)
+  const dropdownRef = useRef(null)
+  const [imageUrl, setImageUrl] = useState(null)
 
   const handleClick = (e) => {
-    e.stopPropagation();
-    setShowMenu(!showMenu);
-  };
+    e.stopPropagation()
+    setShowMenu(!showMenu)
+  }
 
   const handleEdit = () => {
-    setShowMenu(false);
-    onEdit(cardIndex);
-  };
+    setShowMenu(false)
+    onEdit(cardIndex)
+  }
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowMenu(false);
+        setShowMenu(false)
       }
-    };
+    }
 
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
-  }, []);
+    document.addEventListener('mousedown', handleOutsideClick)
+    return () => document.removeEventListener('mousedown', handleOutsideClick)
+  }, [])
 
   useEffect(() => {
     if (iamge instanceof File) {
-      const url = URL.createObjectURL(iamge);
-      setImageUrl(url);
-      return () => URL.revokeObjectURL(url);
+      const url = URL.createObjectURL(iamge)
+      setImageUrl(url)
+      return () => URL.revokeObjectURL(url)
     } else {
-      setImageUrl(iamge);
+      setImageUrl(iamge)
     }
-  }, [iamge]);
+  }, [iamge])
 
   return (
     <motion.div
@@ -46,7 +45,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="bg-gray-800 rounded-lg overflow-hidden shadow-lg relative"
+      className="bg-gray-800 rounded-lg overflow-hidden shadow-lg"
     >
       <div className="p-4">
         <div className="flex justify-between items-start mb-4">
@@ -55,14 +54,14 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
             <p className="text-gray-400 text-sm truncate mb-2">{add}</p>
           </div>
           {imageUrl && (
-            <img
-              src={imageUrl}
-              className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
-              alt={id}
+            <img 
+              src={imageUrl} 
+              className="w-16 h-16 object-cover rounded-lg flex-shrink-0" 
+              alt={id} 
             />
           )}
         </div>
-
+        
         <div className="flex justify-between items-center mb-4">
           <div className="text-xs font-semibold text-gray-500">
             <span>Amount Due</span>
@@ -76,8 +75,6 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
 
         <div className="relative">
           <button
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
             onClick={handleClick}
             className="p-2 rounded-full hover:bg-gray-700 transition-colors duration-200"
             aria-label="More options"
@@ -85,22 +82,15 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
             <CiMenuKebab className="text-gray-400" />
           </button>
 
-          {/* Tooltip */}
-          {showTooltip && (
-            <div className="absolute top-0 right-0 mt-2 mr-2 w-32 bg-gray-700 text-white text-sm rounded-md p-2 z-20">
-              More options
-            </div>
-          )}
-
           <AnimatePresence>
             {showMenu && (
               <motion.div
                 ref={dropdownRef}
-                initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.1 }}
-                className="absolute left-0 bottom-full mb-2 w-48 bg-gray-700 rounded-md shadow-lg z-10"
+                className="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg z-10"
               >
                 <button
                   onClick={handleEdit}
@@ -122,7 +112,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
         </div>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

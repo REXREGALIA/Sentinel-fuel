@@ -82,7 +82,7 @@ export default function Component() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 "
             onClick={toggleSidebar}
           />
         )}
@@ -94,7 +94,7 @@ export default function Component() {
           width: "16rem",
         }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={`fixed top-0 left-0 bottom-0 w-64 bg-gray-800 p-6 flex flex-col z-50 lg:relative lg:translate-x-0 lg:w-64 lg:flex ${sidebarOpen ? 'block' : 'hidden'} lg:block`}
+        className="fixed top-0 left-0 bottom-0 w-64 bg-gray-800 p-6 flex flex-col z-50 lg:relative lg:translate-x-0"
       >
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center">
