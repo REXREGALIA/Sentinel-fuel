@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
+  background-color: #0000;
+} */
+
+/* Custom styles to change the spinner arrow color */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  color: #9ca3af; /* Grayish color similar to the input's focus state */
+}

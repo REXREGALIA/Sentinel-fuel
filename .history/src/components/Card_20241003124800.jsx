@@ -59,7 +59,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
         {imageUrl && (
           <img
             src={imageUrl}
-            className="w-20 h-20 object-cover rounded-full flex-shrink-0"
+            className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
             alt={id}
           />
         )}

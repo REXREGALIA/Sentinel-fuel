@@ -105,7 +105,7 @@ export default function Component() {
           id: doc.id,
           ...doc.data(),
         }));
-        setCards(fetchedCards);
+        // setCards(fetchedCards);
       }
     );
 

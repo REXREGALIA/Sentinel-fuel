@@ -68,7 +68,7 @@ export default function Component() {
     try {
       await deleteDoc(stationRef);
       await deleteObject(imageRef);
-      toast.success("Station deleted");
+      toast.success("Station and image deleted");
     } catch (error) {
       toast.error("Error deleting station: " + error.message);
     }

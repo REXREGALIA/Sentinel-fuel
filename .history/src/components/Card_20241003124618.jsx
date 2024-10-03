@@ -59,7 +59,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
         {imageUrl && (
           <img
             src={imageUrl}
-            className="w-20 h-20 object-cover rounded-full flex-shrink-0"
+            className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
             alt={id}
           />
         )}
@@ -144,7 +144,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
             // onMouseLeave={() => setShowTooltip(false)}
             onClick={handleClick}
             className="p-2 rounded-full hover:bg-gray-700 transition-colors duration-200"
-            // aria-label="More options"
+            aria-label="More options"
           >
             <CiMenuKebab className="text-gray-400" />
           </button>
@@ -157,7 +157,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 10 }}
                 transition={{ duration: 0.1 }}
-                className="absolute right-0 top-3 mt-2 w-32 bg-gray-700 rounded-md shadow-lg z-10"
+                className="absolute right-0 top-full mt-2 w-32 bg-gray-700 rounded-md shadow-lg z-10"
               >
                 <button
                   onClick={handleEdit}

@@ -59,7 +59,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
         {imageUrl && (
           <img
             src={imageUrl}
-            className="w-20 h-20 object-cover rounded-full flex-shrink-0"
+            className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
             alt={id}
           />
         )}
@@ -79,32 +79,29 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
   );
 
   const expandedContent = (
-    <div className="p-4 ">
-      <h2 className="text-2xl font-bold mb-4">{id}</h2>
-      <p className="text-lg mb-4">{add}</p>
+    <div className="p-4">
+      <h2 className="text-2xl flex justify-center font-bold mb-4">{id}</h2>
+      <p className="text-lg flex justify-center mb-4">{add}</p>
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <h3 className="font-semibold">Amount Due</h3>
-          <p>$ --</p>
+          <p>$0.00</p>
         </div>
         <div>
           <h3 className="font-semibold">Petrol Remaining</h3>
-          <p>-- L</p>
+          <p>0 L</p>
         </div>
       </div>
       <div className="mb-4">
         <h3 className="font-semibold mb-2">Additional Details</h3>
-        <p>Last Refill: </p>
-        <p>Storage Capacity: </p>
-        <p>Fuel Types:</p>
-        <p>Operatig Hours: </p>
-        <p>Manager: </p>
-        <p>Contact:</p>
+        <p>Last Refill: Not Available</p>
+        <p>Manager: Not Available</p>
+        <p>Contact: Not Available</p>
       </div>
       {imageUrl && (
         <img
           src={imageUrl}
-          className="w-1/2 h-1/2 object-cover rounded-lg mb-4"
+          className="w-full h-full object-cover rounded-lg mb-4"
           alt={id}
         />
       )}
@@ -138,13 +135,13 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
         onClick={toggleExpand}
       >
         {cardContent}
-        <div className="absolute top-1 right-0">
+        <div className="absolute top-2 right-2">
           <button
-            // onMouseEnter={() => setShowTooltip(true)}
-            // onMouseLeave={() => setShowTooltip(false)}
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
             onClick={handleClick}
             className="p-2 rounded-full hover:bg-gray-700 transition-colors duration-200"
-            // aria-label="More options"
+            aria-label="More options"
           >
             <CiMenuKebab className="text-gray-400" />
           </button>
@@ -157,7 +154,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 10 }}
                 transition={{ duration: 0.1 }}
-                className="absolute right-0 top-3 mt-2 w-32 bg-gray-700 rounded-md shadow-lg z-10"
+                className="absolute right-0 top-full mt-2 w-32 bg-gray-700 rounded-md shadow-lg z-10"
               >
                 <button
                   onClick={handleEdit}

@@ -156,7 +156,7 @@ const Forms = ({ onAddCard, cardData, onSaveEdit }) => {
             id="capacity"
             value={capacity}
             onChange={(e) => setCapacity(e.target.value)}
-            className="mt-1 block w-full rounded-md bg-gray-700 border-transparent focus:border-blue-500 focus:bg-gray-600 focus:ring-0 text-white "
+            className="mt-1 block w-full rounded-md bg-gray-700 border-transparent focus:border-blue-500 focus:bg-gray-600 focus:ring-0 text-white"
             required
           />
         </div>
@@ -166,7 +166,7 @@ const Forms = ({ onAddCard, cardData, onSaveEdit }) => {
             Fuel Types Available
           </label>
           <div className="space-y-2">
-            {['Petrol', 'Diesel'].map((type) => (
+            {['Petrol', 'Diesel', 'CNG', 'Electric'].map((type) => (
               <label key={type} className="inline-flex items-center mr-4">
                 <input
                   type="checkbox"
@@ -191,7 +191,7 @@ const Forms = ({ onAddCard, cardData, onSaveEdit }) => {
             value={operatingHours}
             onChange={(e) => setOperatingHours(e.target.value)}
             placeholder="e.g., 24/7 or 6:00 AM - 10:00 PM"
-            className="mt-1 block w-full p-1 rounded-md bg-gray-700 border-transparent focus:border-blue-500 focus:bg-gray-600 focus:ring-0 text-white"
+            className="mt-1 block w-full rounded-md bg-gray-700 border-transparent focus:border-blue-500 focus:bg-gray-600 focus:ring-0 text-white"
           />
         </div>
 
