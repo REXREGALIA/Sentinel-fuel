@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './components/Home'
 import Signup from './components/Signup'
 import { Toaster, toast } from 'sonner'
-import Land from './components/Land';
+import Landing from './components/land/Landing';
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} /> 
           <Route path="/home" element={<Home />} />
           <Route path="/signup" element={<Signup />} /> 
-          <Route path='/' element={<Land />}></Route>
+          <Route path='/' element={<Landing />}></Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>
