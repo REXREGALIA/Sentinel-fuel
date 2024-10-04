@@ -1,0 +1,21 @@
+/* Ensure full-height and remove unwanted scrolling */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Optional background color */
+body {
+  background-color: #0000; /* This sets a transparent background */
+}
+
+/* Ensure router pages take full viewport height */
+#root,
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

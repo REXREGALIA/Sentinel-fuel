@@ -1,0 +1,28 @@
+/* Reset margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full height for html and body */
+html,
+body {
+  height: 100%;
+  overflow-x: hidden; /* Disable horizontal scroll */
+}
+
+/* Root container takes full viewport height */
+#root,
+.App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make sure that scrolling doesn't add extra space */
+body {
+  background-color: #0000;
+  overflow: hidden; /* Prevent vertical scroll space */
+  position: relative;
+}
