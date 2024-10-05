@@ -16,7 +16,7 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import { auth, db } from "../Firebase";
-import { addDoc, collection, onSnapshot, doc, updateDoc, deleteDoc, query, where, getDocs } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, doc, updateDoc, deleteDoc, query, where, getDocs  } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 

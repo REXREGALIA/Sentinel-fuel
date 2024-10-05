@@ -25,9 +25,7 @@ const Login = () => {
     // console.log(email);
     try {
       setLoading(true);
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      localStorage.setItem('userId', user.uid);
+      await signInWithEmailAndPassword(auth, email, password);
       setLoading(false);
       navigate("/home");
     } catch (error) {

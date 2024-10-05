@@ -16,9 +16,10 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import { auth, db } from "../Firebase";
-import { addDoc, collection, onSnapshot, doc, updateDoc, deleteDoc, query, where, getDocs } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import { getStorage, ref, deleteObject } from "firebase/storage";
+import { getDocs, query, where } from "firebase/firestore";
 
 export default function Component() {
   const { currentUser } = useContext(AuthContext);
@@ -38,13 +39,18 @@ export default function Component() {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   const handleAddCard = async (newCardData) => {
+
+const newCardData = {
+  ...newCardData,
+  userId: currentUser.uid 
+};
+
     try {
       const querySnapshot = await getDocs(
         query(
           collection(db, "petrolStations"), 
           where("name", "==", newCardData.name),
-          where("address", "==", newCardData.address),
-          where("userId", "==", currentUser.uid)
+          where("address", "==", newCardData.address)
         )
       );
       
@@ -53,12 +59,7 @@ export default function Component() {
         return;
       }
 
-      const cardDataWithUserId = {
-        ...newCardData,
-        userId: currentUser.uid
-      };
-
-      const docRef = await addDoc(collection(db, "petrolStations"), cardDataWithUserId);
+      const docRef = await addDoc(collection(db, "petrolStations"), newCardData);
       toast.success("New station added");
       setShowForm(false);
     } catch (error) {
@@ -102,16 +103,10 @@ export default function Component() {
 
   const handlelogout = async () => {
     await signOut(auth);
-    localStorage.removeItem('userId');
     navigate("/login");
   };
 
   useEffect(() => {
-    if (!currentUser) {
-      navigate("/login");
-      return;
-    }
-
     const unsubscribe = onSnapshot(
       query(collection(db, "petrolStations"), where("userId", "==", currentUser.uid)),
       (snapshot) => {
@@ -124,11 +119,7 @@ export default function Component() {
     );
 
     return () => unsubscribe();
-  }, [currentUser, navigate]);
-
-  if (!currentUser) {
-    return null;
-  }
+  }, []);
 
   return (
     <div className="bg-gray-900 text-white min-h-screen flex">
