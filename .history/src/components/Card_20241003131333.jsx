@@ -104,7 +104,7 @@ const Card = ({ cardIndex, id, iamge, add, onDelete, onEdit }) => {
       {imageUrl && (
         <img
           src={imageUrl}
-          className="w-1/4 h-1/4 object-cover flex justify-center rounded-lg mb-4"
+          className="w-1/4 h-1/2 object-cover rounded-lg mb-4"
           alt={id}
         />
       )}
