@@ -24,9 +24,8 @@ function App() {
 
 }
 
-function NotFound() {
-  return <h1>404 - Page Not Found. Wrong HTTP Request</h1>;
-}
+
   
 
-export default App;
+export default App
+

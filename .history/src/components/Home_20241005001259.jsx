@@ -32,10 +32,7 @@ export default function Component() {
   const navigate = useNavigate();
 
   const handleOpen = () => setIsOpen(!isOpen);
-  const handleClick = () => {
-    setShowForm(!showForm);
-    setEditingCard(null);
-  };
+  const handleClick = () => setShowForm(!showForm);
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   const handleAddCard = async (newCardData) => {
@@ -195,7 +192,7 @@ export default function Component() {
             className="mb-8 px-6 py-3 bg-blue-500 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition duration-300"
             onClick={handleClick}
           >
-            <span>{editingCard ? "Edit Station" : "Add New Station"}</span>
+            <span>Add New Station</span>
             <FiPlusCircle />
           </motion.button>
           <AnimatePresence>

@@ -3,19 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CiMenuKebab } from "react-icons/ci";
 import { FiEdit2, FiTrash2, FiX } from "react-icons/fi";
 
-const Card = ({ 
-  cardIndex, 
-  id, 
-  iamge, 
-  add, 
-  capacity,
-  fuelTypes,
-  operatingHours,
-  contactNumber,
-  managerName,
-  onDelete, 
-  onEdit 
-}) => {
+const Card = ({ cardIndex, id, iamge, add, capacity, fuelTypes, operatingHours, contactNumber, managerName, onDelete, onEdit }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const dropdownRef = useRef(null);
@@ -26,8 +14,7 @@ const Card = ({
     setShowMenu(!showMenu);
   };
 
-  const handleEdit = (e) => {
-    e.stopPropagation();
+  const handleEdit = () => {
     setShowMenu(false);
     onEdit(cardIndex);
   };
@@ -91,7 +78,7 @@ const Card = ({
   );
 
   const expandedContent = (
-    <div className="p-4">
+    <div className="p-4 ">
       <h2 className="text-2xl font-bold mb-4">{id}</h2>
       <p className="text-lg mb-4">{add}</p>
       <div className="grid grid-cols-2 gap-4 mb-4">
