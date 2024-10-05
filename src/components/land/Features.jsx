@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 const Features = forwardRef((props, ref) => (
   <section ref={ref} className="mt-20">
-    <h2 className="text-3xl font-bold mb-10">Our Features</h2>
+    <h2 className="text-3xl font-bold mb-10">Our Services</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
       <div className="bg-gray-900 p-6 rounded-lg">
         <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
